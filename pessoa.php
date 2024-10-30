@@ -1,17 +1,22 @@
-<!--classe de entidade (Pessoa)-->
 <?php
+// Classe entidade Pessoa
+// Representa uma pessoa com seus atributos
+
   class Pessoa{
-    //variáveis globais
+    // Atributos privados da classe Pessoa
     private $cpf, $nome, $profissao, $telefone, $email;
 
+    // Método para definir o CPF da pessoa
     public function setCpf($cpf){
         $this->cpf = $cpf;
     }
 
+    // Método para obter o CPF da pessoa
     public function getCpf(){
         return $this->cpf;
     }
 
+    // os outros métodos getters e setters para os demais atributos
     public function setNome($nome){
         $this->nome = $nome;
     }
