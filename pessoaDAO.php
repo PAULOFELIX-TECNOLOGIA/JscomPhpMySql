@@ -100,7 +100,7 @@ include "conexao.php";
     
             // Método para consultar todas as pessoas e seus contatos
             // Realiza um join entre as tabelas 'pessoa' e 'contato'
-            $sql = "select * from pessoa inner join contato on pessoa.cpf_pessoa=contato.pessoa_contato";
+            $sql = "select * from pessoa left join contato on pessoa.cpf_pessoa=contato.pessoa_contato";
            
             // Obtém a conexão e executa a consulta
             $bd = new Conexao();

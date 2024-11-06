@@ -17,33 +17,25 @@
     $pessoa = new Pessoa();
     $pessoaDAO = new PessoaDAO();
     
+    // Extrai os dados da pessoa da requisição e cria um objeto Pessoa
+    $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
+    $pessoa->setNome(filter_input(INPUT_POST ,'nome'));
+    $pessoa->setProfissao(filter_input(INPUT_POST ,'profissao'));
+    $pessoa->setTelefone(filter_input(INPUT_POST ,'telefone'));
+    $pessoa->setEmail(filter_input(INPUT_POST ,'email'));
+
     // Verifica se a ação é consultar todas as pessoas
     if(isset($_GET['getPessoa'])){
          // Consulta todas as pessoas no banco de dados e retorna em formato JSON
         echo json_encode($pessoaDAO->consultar());
     }else if(isset($_GET['cadPessoa'])){
-        // Extrai os dados da pessoa da requisição e cria um objeto Pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
-        $pessoa->setNome(filter_input(INPUT_POST ,'nome'));
-        $pessoa->setProfissao(filter_input(INPUT_POST ,'profissao'));
-        $pessoa->setTelefone(filter_input(INPUT_POST ,'telefone'));
-        $pessoa->setEmail(filter_input(INPUT_POST ,'email'));
         // Insere a pessoa no banco de dados e retorna o resultado em JSON
         echo json_encode($pessoaDAO->cadastrar($pessoa));
     }else if(isset($_GET['delPessoa'])){
-        // utiliza a mesma lógica anterior, agora para excluir uma pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
         echo json_encode($pessoaDAO->deletar($pessoa));
     }else if(isset($_GET['atuPessoa'])){
-        // utiliza a mesma lógica anterior, agora para atualizar uma pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
-        $pessoa->setNome(filter_input(INPUT_POST ,'nome'));
-        $pessoa->setProfissao(filter_input(INPUT_POST ,'profissao'));
-        $pessoa->setTelefone(filter_input(INPUT_POST ,'telefone'));
-        $pessoa->setEmail(filter_input(INPUT_POST ,'email'));
         echo json_encode($pessoaDAO->atualizar($pessoa));
     } 
-
     
 
     
