@@ -49,8 +49,8 @@
                         "<td>" + resposta[i].telefone_contato + "</td>" +
                         "<td>" + resposta[i].email_contato + "</td>" +
                         "<td>" +
-                        "<button class='action-button' onclick='atualizar(" + resposta[i].id_pessoa + ")'>Atualizar</button>" +
-                        "<button class='delete-button' onclick='apagar(" + resposta[i].id_pessoa + ")'>Apagar</button>" +
+                        "<button class='action-button' onclick='atualizar(" + resposta[i].cpf_pessoa + ")'>Atualizar</button>" +
+                        "<button class='delete-button' onclick='apagar(" + resposta[i].cpf_pessoa + ")'>Apagar</button>" +
                         "</td></tr>";
                 }
                 organizar += "</tbody></table>";
@@ -85,12 +85,12 @@
         }
 
         // Funções de atualização e apagamento sem funcionalidade ainda
-        function atualizar(id) {
-            alert("Atualizar dados da pessoa com ID: " + id);
+        function atualizar(cpf) {
+            alert("Atualizar dados da pessoa com ID: " + cpf);
         }
 
-        function apagar(id) {
-            alert("Apagar dados da pessoa com ID: " + id);
+        function apagar(cpf) {
+            alert("Apagar dados da pessoa com ID: " + cpf);
         }
 
         // Obtendo elementos da página
