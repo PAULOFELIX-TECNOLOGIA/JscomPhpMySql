@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro e Consulta</title>
     <link rel="stylesheet" type="text/css" href="adicionando.css" media="screen" />
+    
 </head>
 <body onload="consultar()">
-    
+    <?php include "menu.php"; ?>
+	
 <h2>Cadastro de Pessoas</h2>
 
 <!-- Botão para abrir o modal de cadastro -->
@@ -206,9 +208,11 @@
 
             xhttp.onload = function() {
                 document.getElementById("resultadoacao").innerHTML = this.responseText;
+                consultar();
             }
         } else {
             document.getElementById("resultadoacao").innerHTML = "Saindo...";
+            consultar();
         }
 
         consultar();
