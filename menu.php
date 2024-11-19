@@ -42,13 +42,11 @@
         <!-- Menu Lateral -->
         <div id="sidebar">
             <div class="sidebar-field">
-                <a href="index.php" class="sidebar-item text-dark">
-                    <div class="sidebar-icon"></div> Principal
+                <a href="index.php" class="sidebar-item text-dark">Principal
                 </a>
             </div>
             <div class="sidebar-field">
-                <a href="teste.php" class="sidebar-item text-dark">
-                    <div class="sidebar-icon"></div> Teste
+                <a href="teste.php" class="sidebar-item text-dark">Teste
                 </a>
             </div>
         </div>
