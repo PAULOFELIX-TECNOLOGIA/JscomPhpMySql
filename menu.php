@@ -34,29 +34,7 @@
             background-color: #007bff;
         }
 
-        /* Conteúdo principal */
-        .content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-
-        h2 {
-            font-size: 24px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        
     </style>
 </head>
 <body>
