@@ -170,6 +170,7 @@
 
         xhttp.onload = function() {
             document.getElementById("resultadoAtualizacao").innerHTML = this.responseText;
+            consultar();
         }
 
         // Fechar a modal após salvar
@@ -177,7 +178,7 @@
         modalAtualizacao.style.display = "none";
 
         // Recarregar a lista de pessoas
-        consultar();
+        
     }
 
     // Função para fechar o modal de atualização
