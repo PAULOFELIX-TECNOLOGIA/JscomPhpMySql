@@ -49,6 +49,10 @@
                 <a href="teste.php" class="sidebar-item text-dark">Teste
                 </a>
             </div>
+            <div class="sidebar-field">
+                <a href="teste2.php" class="sidebar-item text-dark">Teste2
+                </a>
+            </div>
         </div>
 <div>
 	</body>

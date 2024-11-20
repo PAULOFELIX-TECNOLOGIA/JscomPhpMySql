@@ -10,7 +10,7 @@
 <body onload="consultar()">
     <?php include "menu.php"; ?>
 	
-<h2>Cadastro de Pessoas</h2>
+<h2>Cadastro de testes</h2>
 
 <!-- Botão para abrir o modal de cadastro -->
 <button id="abrindoModalBtn">Clique para Inserir Dados</button>
