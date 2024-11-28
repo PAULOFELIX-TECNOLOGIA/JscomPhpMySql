@@ -1,4 +1,4 @@
-show databases;
+git config --global user.name "show databases;
 
 create database SistemaEscolar;
 
