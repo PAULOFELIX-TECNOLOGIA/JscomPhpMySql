@@ -46,7 +46,7 @@
                 </a>
             </div>
             <div class="sidebar-field">
-                <a href="teste.php" class="sidebar-item text-dark">Teste
+                <a href="formBoletim.php" class="sidebar-item text-dark">Boletim
                 </a>
             </div>
             <div class="sidebar-field">

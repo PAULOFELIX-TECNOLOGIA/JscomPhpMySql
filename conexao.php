@@ -1,21 +1,15 @@
 <?php
-class Conexao{
-    // Atributo estático para armazenar a única instância da conexão
-    private static $instancia;
 
-    // Método estático para obter a conexão com o banco de dados
-    public static function getConexao(){
-        // Verifica se a instância já existe
-        if(!isset(self::$instancia)){
-            // Cria uma nova conexão com o banco de dados
-            self::$instancia = new PDO('mysql:host=localhost; dbname=cadastro_pessoa; charset=utf8','root', '');
-            return self::$instancia;
-        }else{
-            // Retorna a instância da conexão
-            return self::$instancia;
-        }
-        
-    }
+$Bco = 'SistemaEscolar';
+$Usuario = 'root';
+$Senha = '';
 
-  }
-?>
+try{
+    $conexao = new PDO("mysql:host=localhost; dbname=$Bco", "$Usuario", "$Senha");
+    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conexao->exec("set names utf8");
+}
+catch (PDOException $erro)
+{
+    echo "Erro na conexão:" . $erro->getMessage();
+}

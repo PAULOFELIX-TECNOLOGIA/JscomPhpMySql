@@ -10,7 +10,7 @@
 <body onload="consultar()">
     <?php include "menu.php"; ?>
 	
-<h2>Cadastro de testes</h2>
+<h2>Cadastro do Boletim</h2>
 
 <!-- Botão para abrir o modal de cadastro -->
 <button id="abrindoModalBtn">Clique para Inserir Dados</button>
@@ -20,17 +20,16 @@
     <div class="modal-content">
         <span class="close" id="fecharModalCadastroBtn">&times;</span>
         <h5>Cadastro de Pessoa</h5>
-        <input id="cpfCadastro" placeholder="CPF" /><br>    
-        <input id="nomeCadastro" placeholder="Nome" /><br>
-        <input id="profissaoCadastro" placeholder="Profissão" /><br>
-        <input id="telefoneCadastro" placeholder="Telefone" /><br>    
-        <input id="emailCadastro" placeholder="E-mail" /><br>
+        <input id="matricula" placeholder="Matrícula" /><br>    
+        <input id="disci" placeholder="Disciplina" /><br>
+        <input id="nota" placeholder="Nota" /><br>
+        <input id="nota2" placeholder="Nota2" /><br>    
         <button onclick="cadastrar()">Cadastrar</button>
         <p id="resultadoCadastro"></p>
     </div>
 </div>
 
-<h2>Lista de Pessoas Cadastradas</h2>
+<h2>Boletins Cadastradas</h2>
 <div id="resultado">
     <!-- Tabela com os resultados será gerada aqui -->
 </div>
@@ -39,12 +38,11 @@
 <div id="meuModalAtualizacao" class="modal">
     <div class="modal-content">
         <span class="close" id="fecharModalAtualizacaoBtn">&times;</span>
-        <h5>Atualização de Pessoa</h5>
-        <input id="cpfAtualizacao" placeholder="CPF" disabled/><br>    
-        <input id="nomeAtualizacao" placeholder="Nome" /><br>
-        <input id="profissaoAtualizacao" placeholder="Profissão" /><br>
-        <input id="telefoneAtualizacao" placeholder="Telefone" /><br>    
-        <input id="emailAtualizacao" placeholder="E-mail" /><br>
+        <h5>Atualização do Boletim</h5>
+        <input id="matricula" placeholder="Matrícula" /><br>    
+        <input id="disci" placeholder="Disciplina" /><br>
+        <input id="nota" placeholder="Nota" /><br>
+        <input id="nota2" placeholder="Nota2" /><br>    
         <button onclick="salvarAtualizacao()">Atualizar</button>
         <p id="resultadoAtualizacao"></p>
     </div>
@@ -54,21 +52,27 @@
     // Função para consultar e exibir os dados cadastrados
     function consultar() {
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "controle.php?getPessoa");
+        xhttp.open("GET", "contrBoletim.php?Consultar");
         xhttp.send();
 
         xhttp.onload = function() {
             var resposta = JSON.parse(this.responseText);
-            var organizar = "<table><thead><tr><th>CPF</th><th>Nome</th><th>Profissão</th><th>Telefone</th><th>E-mail</th><th>Ações</th></tr></thead><tbody>";
+            var organizar = "<table><thead><tr><th>Matrícula</th><th>Disciplina</th><th>Nota</th><th>Nota2</th><th>Aluno</th><th>Dt Nasc</th><th>Turma</th><th>Semestre</th><th>Hora</th><th>Ações</th></tr></thead><tbody>";
             for (var i = 0; i < resposta.length; i++) {
-                organizar += "<tr><td>" + resposta[i].cpf_pessoa + "</td>" +
-                    "<td>" + resposta[i].nome_pessoa + "</td>" +
-                    "<td>" + resposta[i].profissao_pessoa + "</td>" +
-                    "<td>" + resposta[i].telefone_contato + "</td>" +
-                    "<td>" + resposta[i].email_contato + "</td>" +
+                organizar += "<tr><td>" + resposta[i].matricula + "</td>" +
+                    "<td>" + resposta[i].disci + "</td>" +
+                    "<td>" + resposta[i].nota + "</td>" +
+                    "<td>" + resposta[i].nota2 + "</td>" +
+                    "<td>" + resposta[i].nomeal + "</td>" +
+                    "<td>" + resposta[i].nasc + "</td>" +
+                    "<td>" + resposta[i].turma + "</td>" +
+                    "<td>" + resposta[i].semes + "</td>" +
+                    "<td>" + resposta[i].hr + "</td>" +
+
+                    
                     "<td>" +
-                    "<button class='action-button' onclick='atualizar(" + resposta[i].cpf_pessoa + ")'>Atualizar</button>" +
-                    "<button class='delete-button' onclick='apagar(" + resposta[i].cpf_pessoa + ")'>Apagar</button>" +
+                    "<button class='action-button' onclick='atualizar(" + resposta[i].matricula + ")'>Atualizar</button>" +
+                    "<button class='delete-button' onclick='apagar(" + resposta[i].matricula + ")'>Apagar</button>" +
                     "</td></tr>";
             }
             organizar += "</tbody></table>";
@@ -78,21 +82,20 @@
 
     // Função para cadastrar uma nova pessoa
     function cadastrar() {
-        var cpf = document.getElementById("cpfCadastro").value;
-        var nome = document.getElementById("nomeCadastro").value;
-        var profissao = document.getElementById("profissaoCadastro").value;
-        var telefone = document.getElementById("telefoneCadastro").value;
-        var email = document.getElementById("emailCadastro").value;
+        var matricula = document.getElementById("matricula").value;
+        var disci = document.getElementById("disci").value;
+        var nota = document.getElementById("nota").value;
+        var nota2 = document.getElementById("nota2").value;
+        
         
         const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "controle.php?cadPessoa", true);
+        xhttp.open("POST", "contrBoletim.php?Incluir", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        var data = "cpf=" + encodeURIComponent(cpf) +
-            "&nome=" + encodeURIComponent(nome) +
-            "&profissao=" + encodeURIComponent(profissao) +
-            "&telefone=" + encodeURIComponent(telefone) +
-            "&email=" + encodeURIComponent(email);
+        var data = "matricula=" + encodeURIComponent(matricula) +
+            "&disci=" + encodeURIComponent(disci) +
+            "&nota=" + encodeURIComponent(nota) +
+            "&nota2=" + encodeURIComponent(nota2);
 
         xhttp.send(data);
       
@@ -197,14 +200,14 @@
     }
 
     // Função para apagar uma pessoa
-    function apagar(cpf) {
+    function apagar(matricula) {
         var r = confirm("Você confirma que deseja apagar os dados?");
         if (r == true) {
             const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "controle.php?delPessoa", true);
+            xhttp.open("POST", "contrBoletim.php?Apagar", true);
             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var data = "cpf=" + encodeURIComponent(cpf);
+            var data = "matricula=" + encodeURIComponent(matricula);
             xhttp.send(data);
 
             xhttp.onload = function() {
