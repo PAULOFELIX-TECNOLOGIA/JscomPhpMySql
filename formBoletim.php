@@ -57,18 +57,19 @@
 
         xhttp.onload = function() {
             var resposta = JSON.parse(this.responseText);
-            var organizar = "<table><thead><tr><th>Matrícula</th><th>Disciplina</th><th>Nota</th><th>Nota2</th><th>Aluno</th><th>Dt Nasc</th><th>Turma</th><th>Semestre</th><th>Hora</th><th>Ações</th></tr></thead><tbody>";
+            var organizar = "<table><thead><tr><th>Matrícula</th><th>Disciplina</th><th>Nota</th><th>Nota2</th><th>media</th><th>Aluno</th><th>Dt Nasc</th><th>Turma</th><th>Semestre</th><th>Hora</th><th>Ações</th></tr></thead><tbody>";
             for (var i = 0; i < resposta.length; i++) {
                 organizar += "<tr><td>" + resposta[i].matricula + "</td>" +
                     "<td>" + resposta[i].disci + "</td>" +
                     "<td>" + resposta[i].nota + "</td>" +
                     "<td>" + resposta[i].nota2 + "</td>" +
+                    "<td>" + resposta[i].media + "</td>" + 
                     "<td>" + resposta[i].nomeal + "</td>" +
                     "<td>" + resposta[i].nasc + "</td>" +
                     "<td>" + resposta[i].turma + "</td>" +
                     "<td>" + resposta[i].semes + "</td>" +
                     "<td>" + resposta[i].hr + "</td>" +
-
+                    
                     
                     "<td>" +
                     "<button class='action-button' onclick='atualizar(" + resposta[i].matricula + ")'>Atualizar</button>" +
@@ -127,22 +128,21 @@
     }
 
     // Função para exibir os dados de uma pessoa para atualizar
-    function atualizar(cpf) {
+    function atualizar(matricula) {
         // Buscar os dados dessa pessoa
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "controle.php?getPessoa");
+        xhttp.open("GET", "contrBoletim.php?Consultar");
         xhttp.send();
 
         xhttp.onload = function() {
-            var pessoa = JSON.parse(this.responseText);
-            for (var i = 0; i < pessoa.length; i++) {
-                if(cpf==pessoa[i].cpf_pessoa){
-                    // Preencher os campos do formulário com os dados da pessoa
-                    document.getElementById("cpfAtualizacao").value = pessoa[i].cpf_pessoa; // O CPF não pode ser alterado
-                    document.getElementById("nomeAtualizacao").value = pessoa[i].nome_pessoa;
-                    document.getElementById("profissaoAtualizacao").value = pessoa[i].profissao_pessoa;
-                    document.getElementById("telefoneAtualizacao").value = pessoa[i].telefone_contato;
-                    document.getElementById("emailAtualizacao").value = pessoa[i].email_contato;
+            var resposta = JSON.parse(this.responseText);
+            for (var i = 0; i < resposta.length; i++) {
+                if(matricula==resposta[i].matricula){
+                    // Preencher os campos do formulário com os dados do boletim
+                    document.getElementById("matricula").value = resposta[i].matricula; // A matrícula não pode ser alterado
+                    document.getElementById("disci").value = resposta[i].disci;
+                    document.getElementById("nota").value = resposta[i].nota;
+                    document.getElementById("nota2").value = resposta[i].nota2;
                 }
             }
             // Exibir o modal de atualização
@@ -153,21 +153,19 @@
 
     // Função para salvar as atualizações
     function salvarAtualizacao() {
-        var cpf = document.getElementById("cpfAtualizacao").value;
-        var nome = document.getElementById("nomeAtualizacao").value;
-        var profissao = document.getElementById("profissaoAtualizacao").value;
-        var telefone = document.getElementById("telefoneAtualizacao").value;
-        var email = document.getElementById("emailAtualizacao").value;
+        var matricula = document.getElementById("matricula").value;
+        var disci = document.getElementById("disci").value;
+        var nota = document.getElementById("nota").value;
+        var nota2 = document.getElementById("nota2").value;
 
         const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "controle.php?atuPessoa", true);
+        xhttp.open("POST", "contrBoletim.php?Atualizar", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        var data = "cpf=" + encodeURIComponent(cpf) +
-            "&nome=" + encodeURIComponent(nome) +
-            "&profissao=" + encodeURIComponent(profissao) +
-            "&telefone=" + encodeURIComponent(telefone) +
-            "&email=" + encodeURIComponent(email);
+        var data = "matricula=" + encodeURIComponent(matricula) +
+            "&disci=" + encodeURIComponent(disci) +
+            "&nota=" + encodeURIComponent(nota) +
+            "&nota2=" + encodeURIComponent(nota2);
 
         xhttp.send(data);
         consultar();

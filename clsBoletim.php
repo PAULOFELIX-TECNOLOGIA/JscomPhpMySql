@@ -93,7 +93,7 @@ public function Consultar()
     try
     {
         $Comando=$conexao->prepare
-        ("SELECT b.matricula, b.disci, b.nota, b.nota2, a.nomeal, a.nasc, a.turma, g.semes, g.disci, g.hr FROM boletim b
+        ("SELECT b.matricula, b.disci, b.nota, b.nota2, a.nomeal, a.nasc, a.turma, g.semes, g.disci, g.hr, ((b.nota+b.nota2)/2) media FROM boletim b
         LEFT JOIN aluno a ON a.matricula = b.matricula
         LEFT JOIN grade g ON g.disci = b.disci 
         ");//where b.matricula = ?

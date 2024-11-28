@@ -27,21 +27,4 @@ else if (isset($_GET["Consultar"]))
     
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['notas'])) {
-    // Receber as notas enviadas pelo formulário (via GET)
-    $nota = $_GET['notas'];
-    $nota2 = $_GET['notas'];
-
-    // Calcule a soma das notas
-    $soma_notas = array_sum($notas);
-
-    // Calcule o número de notas
-    $num_notas = count($notas);
-
-    // Calcule a média
-    $media = $soma_notas / $num_notas;
-
-    // Exiba o resultado
-    echo "A média das notas é: " . number_format($media, 2);
-}
 
