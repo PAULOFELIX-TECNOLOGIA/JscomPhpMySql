@@ -10,6 +10,27 @@ nomeal varchar (50),
 nasc date,
 turma varchar (10)
 );
+CREATE TABLE IF NOT EXISTS professor (
+  codprof int DEFAULT NULL,
+  nomeprof varchar(50) DEFAULT NULL,
+  disci varchar(20) DEFAULT NULL,
+  cargahr time DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS grade (
+  semes int DEFAULT NULL,
+  disci varchar(20) DEFAULT NULL,
+  turma varchar(10) DEFAULT NULL,
+  hr time DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS aluno (
+  matricula int DEFAULT NULL,
+  nomeal varchar(50) DEFAULT NULL,
+  nasc date DEFAULT NULL,
+  turma varchar(10) DEFAULT NULL
+);
+
 insert into aluno values(1, 'José', '20140101', '1A');
 create table professor
 (codprof int,
@@ -17,6 +38,7 @@ nomeprof varchar (50),
 disci varchar (20),
 cargahr time
 );
+
 insert into professor values(1,'Maria', 'Matemática', '200');
 create table grade
 (semes int,
@@ -24,6 +46,7 @@ disci varchar (20),
 turma varchar (10),
 hr time
 );
+
 insert into grade values(1, 'Matemática', '1A', '200');
 create table boletim
 (matricula int,
@@ -31,6 +54,7 @@ disci varchar (20),
 nota varchar (10),
 nota2 varchar (10)
 );
+
 insert into boletim values(1, 'Matemática', '10', '10');
 SELECT
 a.matricula

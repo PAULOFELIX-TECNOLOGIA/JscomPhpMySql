@@ -23,8 +23,9 @@ else if (isset($_GET["Apagar"]))
 else if (isset($_GET["Consultar"]))
 {
     echo json_encode($Cad->Consultar());
-
-    
+}else if (isset($_GET["Atualizar"]))
+{
+    echo json_encode($Cad->Atualizar());
 }
 
 

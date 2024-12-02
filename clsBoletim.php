@@ -66,6 +66,29 @@ public function Incluir()
     return $Retorno;
 }
 
+public function Atualizar()
+{
+    include_once "conexao.php";
+
+    try{
+        $Comando=$conexao->prepare("update set disci=?, nota=?, nota2=? where matricula=?");
+        $Comando->bindParam(1,$this->disci);
+        $Comando->bindParam(2,$this->nota);
+        $Comando->bindParam(3,$this->nota2);
+        $Comando->bindParam(4,$this->matricula);
+
+
+        if($Comando->execute())
+        {
+            $Retorno = "Atualizado com sucesso";
+        }
+    }catch (PDOException $Erro)
+    {
+        $Retorno = "Erro " . $Erro->getMessage();
+    }
+    return $Retorno;
+}
+
 public function Apagar()
 {
     include_once "conexao.php";
